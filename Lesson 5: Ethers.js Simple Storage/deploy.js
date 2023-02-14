@@ -1,20 +1,18 @@
 const ethers = require("ethers");
 const fs = require("fs-extra");
+require("dotenv").config();
 
 async function main() {
 	//http://127.0.0.1:8545
 
 	//helps to connect to the blockchain
 	const provider = new ethers.providers.JsonRpcProvider(
-		"http://127.0.0.1:8545"
+		process.env.RPC_URL_GOERLI 
 	);
 
 	//connect to or define our wallet
 	//pasting our private key directly into our code is veryyyyyyy bad
-	const wallet = new ethers.Wallet(
-		"813d1a1f6c69677bb232e8ad8dd5d1ecec0ca47b3d3242305e7bfc9745b997b6",
-		provider
-	);
+	const wallet = new ethers.Wallet(process.env.PRIVATE_KEY_GOERLI, provider);
 
 	//getting abi and binary
 	//sync because we need to wait for the file to loaded completely
@@ -33,7 +31,7 @@ async function main() {
 	//await becasuse we should wait till the contract is deployed
 	const contract = await contractFactory.deploy();
 	const transactionReceipt = await contract.deployTransaction.wait(1);
-
+	console.log(`Contract Address: ${contract.address}`);
 	// console.log("Let's deploy with only transaction data!");
 	// const nonce = await wallet.getTransactionCount();
 	// const tx = {
@@ -51,16 +49,19 @@ async function main() {
 	// console.log(sendTxResponse);
 
 	//call retrieve function
+
 	const currentFavouriteNumber = await contract.retreive();
-	console.log(`Current favourite number is zero: ${currentFavouriteNumber.toString()}`);
+	console.log(
+		`Current favourite number is zero: ${currentFavouriteNumber.toString()}`
+	);
 
 	//call store function
 	const transactionResponse = await contract.store("99");
-	const transactionsReceipt = await transactionResponse.wait(1)
+	const transactionsReceipt = await transactionResponse.wait(1);
 	const updatedCurrentFavouriteNumber = await contract.retreive();
-	console.log(`Updated Current favourite number is zero: ${updatedCurrentFavouriteNumber.toString()}`);
-
-
+	console.log(
+		`Updated Current favourite number is zero: ${updatedCurrentFavouriteNumber.toString()}`
+	);
 }
 
 main()
