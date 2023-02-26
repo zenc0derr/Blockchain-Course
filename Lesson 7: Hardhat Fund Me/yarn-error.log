@@ -1,0 +1,48 @@
+Arguments: 
+  /home/teja/.nvm/versions/node/v18.14.1/bin/node /home/teja/.nvm/versions/node/v18.14.1/bin/yarn coverage
+
+PATH: 
+  /home/teja/.cabal/bin:/home/teja/.ghcup/bin:/home/teja/.nvm/versions/node/v18.14.1/bin:/home/teja/anaconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/youruserdirectory/anaconda3/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.14.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/teja/Documents/Blockchain/Blockchain Course/Lesson 7: Hardhat Fund Me/package.json: Unexpected token } in JSON at position 524
+      at JSON.parse (<anonymous>)
+      at /home/teja/.nvm/versions/node/v18.14.1/lib/node_modules/yarn/lib/cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (/home/teja/.nvm/versions/node/v18.14.1/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /home/teja/.nvm/versions/node/v18.14.1/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "devDependencies": {
+      "@chainlink/contracts": "^0.6.1",
+      "@nomicfoundation/hardhat-toolbox": "^2.0.1",
+      "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@^0.3.0-beta.13",
+      "dotenv": "^16.0.3",
+      "hardhat": "^2.12.7",
+      "hardhat-deploy": "^0.11.23",
+      "hardhat-gas-reporter": "^1.0.9",
+      "solhint": "^3.4.0",
+      "solidity-coverage": "^0.8.2"
+    },
+    "scripts": {
+      "test":"yarn hardhat test",
+      "test:staging":"yarn hardhat test --network goerli",
+      "coverage": "yarn hardhat coverage",
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
